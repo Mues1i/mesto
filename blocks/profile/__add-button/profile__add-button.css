@@ -11,10 +11,12 @@
   padding: 0;
   margin-left: auto;
   transition: opacity .3s linear;
+  outline: none;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
-  opacity: .5;
+  opacity: .6;
 }
 
 @media screen and (max-width: 767px) {

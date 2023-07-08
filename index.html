@@ -19,7 +19,7 @@
       <div class="profile__info">
         <div class="profile__bio">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__about">Исследователь океана</p>
+          <p class="profile__job">Исследователь океана</p>
         </div>
         <button class="profile__edit-button">
         </button>
@@ -79,9 +79,21 @@
         </li>
       </ul>
     </section>
-    <section class="footer">
+    <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-    </section>
+    </footer>
   </main>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="popup__close"></button>
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form" name="user">
+        <input type="text" class="popup__input popup__input_name" placeholder="Имя">
+        <input type="text" class="popup__input popup__input_job" placeholder="О себе">
+        <button class="popup__submit" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
