@@ -7,7 +7,7 @@
   <meta name="keywords" content="html, css, js">
   <meta name="author" content="Хан Бо Гир">
   <link rel="stylesheet" href="pages/index.css">
-  <title>Mesto</title>
+  <title lang="en">Mesto</title>
 </head>
 <body class="page">
   <header class="header">
@@ -21,10 +21,10 @@
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <p class="profile__job">Исследователь океана</p>
         </div>
-        <button class="profile__edit-button">
+        <button class="profile__edit-button" type="button" aria-label="Edit profile">
         </button>
       </div>
-      <button class="profile__add-button">
+      <button class="profile__add-button" type="button" aria-label="Add image">
       </button>
     </section>
     <section class="elements">
@@ -33,7 +33,7 @@
           <img src="images/Karach.jpg" alt="Карачевск" class="element__image">
           <div class="element__description">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like-button">
+            <button class="element__like-button" type="button" aria-label="Like">
             </button>
           </div>
         </li>
@@ -41,7 +41,7 @@
           <img src="images/Mount-Elbrus.png" alt="Гора Эльбрус" class="element__image">
           <div class="element__description">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like-button">
+            <button class="element__like-button" type="button" aria-label="Like">
             </button>
           </div>
         </li>
@@ -49,7 +49,7 @@
           <img src="images/Dombai.png" alt="Домбай" class="element__image">
           <div class="element__description">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__like-button">
+            <button class="element__like-button" type="button" aria-label="Like">
             </button>
           </div>
         </li>
@@ -57,7 +57,7 @@
           <img src="images/Mount-Elbrus.png" alt="Гора Эльбрус" class="element__image">
           <div class="element__description">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like-button">
+            <button class="element__like-button" type="button" aria-label="Like">
             </button>
           </div>
         </li>
@@ -65,7 +65,7 @@
           <img src="images/Dombai.png" alt="Домбай" class="element__image">
           <div class="element__description">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__like-button">
+            <button class="element__like-button" type="button" aria-label="Like">
             </button>
           </div>
         </li>
@@ -73,24 +73,24 @@
           <img src="images/Karach.jpg" alt="Карачевск" class="element__image">
           <div class="element__description">
             <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button class="element__like-button">
+            <button class="element__like-button" type="button" aria-label="Like">
             </button>
           </div>
         </li>
       </ul>
     </section>
-    <footer class="footer">
-      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-    </footer>
   </main>
+  <footer class="footer">
+    <p class="footer__copyright" lang="en">&copy; 2020 Mesto Russia</p>
+  </footer>
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close"></button>
-      <h3 class="popup__title">Редактировать профиль</h3>
+      <button class="popup__close" type="button" aria-label="Сlose the editing window"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="user">
-        <input type="text" class="popup__input popup__input_name" placeholder="Имя">
-        <input type="text" class="popup__input popup__input_job" placeholder="О себе">
-        <button class="popup__submit" type="submit">Сохранить</button>
+        <input type="text" name="userName" class="popup__input popup__input_type_name" placeholder="Имя">
+        <input type="text" name="userjob" class="popup__input popup__input_type_job" placeholder="О себе">
+        <button class="popup__submit" type="submit" name="SubmitForm">Сохранить</button>
       </form>
     </div>
   </div>
