@@ -1,4 +1,5 @@
 .element {
+  position: relative;
   background-color: #FFF;
   max-width: 100%;
   border-radius: 10px;

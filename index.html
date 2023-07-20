@@ -29,61 +29,13 @@
     </section>
     <section class="elements">
       <ul class="elements__list">
-        <li class="element">
-          <img src="images/Karach.jpg" alt="Карачевск" class="element__image">
-          <div class="element__description">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
-            </button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/Mount-Elbrus.png" alt="Гора Эльбрус" class="element__image">
-          <div class="element__description">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
-            </button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/Dombai.png" alt="Домбай" class="element__image">
-          <div class="element__description">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
-            </button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/Mount-Elbrus.png" alt="Гора Эльбрус" class="element__image">
-          <div class="element__description">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
-            </button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/Dombai.png" alt="Домбай" class="element__image">
-          <div class="element__description">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
-            </button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="images/Karach.jpg" alt="Карачевск" class="element__image">
-          <div class="element__description">
-            <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
-            </button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright" lang="en">&copy; 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть редактор профиля"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -94,6 +46,36 @@
       </form>
     </div>
   </div>
+  <div class="popup popup_type_card">
+    <div class="popup__container">
+      <button class="popup__close" type="button" aria-label="Закрыть форму добавления карточки"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form" name="CardForm">
+        <input type="text" name="CardFormNameImage" class="popup__input popup__input_type_name-image" placeholder="Название">
+        <input type="text" name="CardFormUrlImage" class="popup__input popup__input_type_url-image" placeholder="Ссылка на картинку">
+        <button class="popup__submit" type="submit" name="submitForm">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_type_image">
+    <figure class="popup__figure">
+      <button class="popup__close" type="button" aria-label="Закрыть изображение"></button>
+      <img class="popup__image">
+      <figcaption class="popup__caption"></figcaption>
+    </figure>
+  </div>
+  <template id="element-template">
+    <li class="element">
+      <button class="element__trash" type="button" aria-label="Удалить изображение"></button>
+      <img class="element__image">
+      <div class="element__description">
+        <h2 class="element__title"></h2>
+        <button class="element__like-button" type="button" aria-label="Поставить отметку 'Нравится'">
+        </button>
+      </div>
+    </li>
+  </template>
+  <script src="./scripts/initialCards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
