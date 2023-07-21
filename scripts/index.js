@@ -28,8 +28,8 @@ const closeButtonImage = popupImage.querySelector('.popup__close');
 const image = document.querySelector('.popup__image');
 const nameImage = document.querySelector('.popup__caption');
 
-
-const renderCard = (cardItem) => {
+//Создание карточки
+const createCard = (cardItem) => {
   const cardLi = cardTemplate.querySelector('.element').cloneNode(true);
   const cardLikeButton = cardLi.querySelector('.element__like-button');
   const cardImage = cardLi.querySelector('.element__image');
@@ -46,11 +46,7 @@ const renderCard = (cardItem) => {
 
   //Лайк карточки
   cardLikeButton.addEventListener('click', () => {
-    if (cardLikeButton.classList.contains('element__like-button_active') === false) {
-        cardLikeButton.classList.add('element__like-button_active');
-      } else {
-        cardLikeButton.classList.remove('element__like-button_active');
-      }
+        cardLikeButton.classList.toggle('element__like-button_active');
   });
 
   //Открытие popup изображения
@@ -65,7 +61,7 @@ const renderCard = (cardItem) => {
 }
 
 initialCards.forEach((card) => {
-  cardsList.append(renderCard(card));
+  cardsList.append(createCard(card));
 });
 
 //Открытие popup окон
@@ -89,7 +85,7 @@ function handleFormSubmitProfile (evt) {
 //Сохранение карточки
 function handleFormSubmitCard (evt) {
   evt.preventDefault();
-  cardsList.prepend(renderCard({
+  cardsList.prepend(createCard({
     name: nameInputCard.value,
     link: urlInputCard.value
   }));
