@@ -10,6 +10,7 @@
   <title lang="en">Mesto</title>
   <script defer src="./scripts/initialCards.js"></script>
   <script defer src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
 </head>
 <body class="page">
   <header class="header">
@@ -37,28 +38,43 @@
   <footer class="footer">
     <p class="footer__copyright" lang="en">&copy; 2020 Mesto Russia</p>
   </footer>
+
   <div class="popup popup_type_profile">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть редактор профиля"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="user">
-        <input type="text" name="userName" class="popup__input popup__input_type_name" required placeholder="Имя">
-        <input type="text" name="userjob" class="popup__input popup__input_type_job" required placeholder="О себе">
+        <label class="popup__label">
+         <input type="text" id="userName" name="userName" class="popup__input popup__input_type_name" required placeholder="Имя" minlength="2" maxlength="40">
+         <span class="username-error popup__input-error"></span>
+        </label>
+        <label class="popup__label">
+         <input type="text" id="userjob" name="userjob" class="popup__input popup__input_type_job" required placeholder="О себе" minlength="2" maxlength="200">
+         <span class="userjob-error popup__input-error"></span>
+        </label>
         <button class="popup__submit" type="submit" name="submitForm">Сохранить</button>
       </form>
     </div>
   </div>
+
   <div class="popup popup_type_card">
     <div class="popup__container">
       <button class="popup__close" type="button" aria-label="Закрыть форму добавления карточки"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="CardForm">
-        <input type="text" name="CardFormNameImage" class="popup__input popup__input_type_name-image" required placeholder="Название">
-        <input type="url" name="CardFormUrlImage" class="popup__input popup__input_type_url-image" required placeholder="Ссылка на картинку">
+        <label class="popup__label">
+          <input type="text" id="cardFormNameImage" name="cardFormNameImage" class="popup__input popup__input_type_name-image" required placeholder="Название" minlength="2" maxlength="30">
+          <span class="cardFormNameImage-error popup__input-error"></span>
+        </label>
+        <label class="popup__label">
+          <input type="url" id="cardFormUrlImage" name="cardFormUrlImage" class="popup__input popup__input_type_url-image" required placeholder="Ссылка на картинку">
+          <span class="cardFormUrlImage-error popup__input-error"></span>
+        </label>
         <button class="popup__submit" type="submit" name="submitForm">Создать</button>
       </form>
     </div>
   </div>
+
   <div class="popup popup_type_image">
     <figure class="popup__figure">
       <button class="popup__close" type="button" aria-label="Закрыть изображение"></button>
@@ -66,6 +82,7 @@
       <figcaption class="popup__caption"></figcaption>
     </figure>
   </div>
+
   <template id="element-template">
     <li class="element">
       <button class="element__trash" type="button" aria-label="Удалить изображение"></button>
@@ -77,5 +94,6 @@
       </div>
     </li>
   </template>
+
 </body>
 </html>
