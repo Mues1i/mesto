@@ -67,15 +67,34 @@ initialCards.forEach((card) => {
 //Открытие popup окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupKeyEsc);
+  document.addEventListener('click', closePopupClickOverlay);
 }
 
 //Закрытие popup окон
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupKeyEsc);
+  document.removeEventListener('click', closePopupClickOverlay);
+}
+
+//Закрытие popup окон по кнопке Esc
+function closePopupKeyEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  }
+}
+
+//Закрытие popup окон при нажатии на оверлей
+function closePopupClickOverlay(evt) {
+  if (evt.target.classList.contains("popup")) {
+      closePopup(evt.target.closest(".popup"));
+  }
 }
 
 //Сохранение профиля
-function handleFormSubmitProfile (evt) {
+function handleFormSubmitProfile(evt) {
   evt.preventDefault();
   profileName.textContent = nameInputProfile.value;
   profileJob.textContent = jobInputProfile.value;
@@ -83,7 +102,7 @@ function handleFormSubmitProfile (evt) {
 }
 
 //Сохранение карточки
-function handleFormSubmitCard (evt) {
+function handleFormSubmitCard(evt) {
   evt.preventDefault();
   cardsList.prepend(createCard({
     name: nameInputCard.value,
