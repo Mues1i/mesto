@@ -1,8 +1,11 @@
+const popupList = document.querySelectorAll('.popup');
+
 //Задаём константу для кнопки Profile
 const editButton = document.querySelector('.profile__edit-button');
 
 //Задаём константы для Popup Profile
 const popupProfile = document.querySelector('.popup_type_profile');
+const popupProfileButtonSubmit = popupProfile.querySelector('.popup__submit');
 const closeButtonProfile = popupProfile.querySelector('.popup__close');
 const formElementProfile = popupProfile.querySelector('.popup__form');
 const nameInputProfile = formElementProfile.querySelector('.popup__input_type_name');
@@ -12,6 +15,7 @@ const profileJob = document.querySelector('.profile__job');
 
 //Задаём константы для Popup Card
 const popupCard = document.querySelector('.popup_type_card');
+const popupCardButtonSubmit = popupCard.querySelector('.popup__submit');
 const addButton = document.querySelector('.profile__add-button');
 const closeButtonCard = popupCard.querySelector('.popup__close');
 const formElementCard = popupCard.querySelector('.popup__form');
@@ -19,7 +23,7 @@ const nameInputCard = formElementCard.querySelector('.popup__input_type_name-ima
 const urlInputCard = formElementCard.querySelector('.popup__input_type_url-image');
 
 //Задаём константы для Card
-const cardsList = document.querySelector('.elements__list');
+const cardsContainer = document.querySelector('.elements__list');
 const cardTemplate = document.querySelector('#element-template').content;
 
 //Задаём константы для popup изображения
@@ -46,7 +50,7 @@ const createCard = (cardItem) => {
 
   //Лайк карточки
   cardLikeButton.addEventListener('click', () => {
-        cardLikeButton.classList.toggle('element__like-button_active');
+    cardLikeButton.classList.toggle('element__like-button_active');
   });
 
   //Открытие popup изображения
@@ -60,22 +64,23 @@ const createCard = (cardItem) => {
   return cardLi;
 }
 
-initialCards.forEach((card) => {
-  cardsList.append(createCard(card));
-});
-
-//Открытие popup окон
+//Универсальное открытие popup окон
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupKeyEsc);
-  document.addEventListener('click', closePopupClickOverlay);
 }
 
-//Закрытие popup окон
+//Открытие popup профиля
+function openPopupProfile() {
+  openPopup(popupProfile);
+  nameInputProfile.value = profileName.textContent;
+  jobInputProfile.value = profileJob.textContent;
+}
+
+//Универсальное закрытие popup окон
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupKeyEsc);
-  document.removeEventListener('click', closePopupClickOverlay);
 }
 
 //Закрытие popup окон по кнопке Esc
@@ -89,7 +94,7 @@ function closePopupKeyEsc(evt) {
 //Закрытие popup окон при нажатии на оверлей
 function closePopupClickOverlay(evt) {
   if (evt.target.classList.contains("popup")) {
-      closePopup(evt.target.closest(".popup"));
+      closePopup(evt.target);
   }
 }
 
@@ -99,25 +104,32 @@ function handleFormSubmitProfile(evt) {
   profileName.textContent = nameInputProfile.value;
   profileJob.textContent = jobInputProfile.value;
   closePopup(popupProfile);
+  disableButton(popupProfileButtonSubmit, validationConfig);
 }
 
 //Сохранение карточки
 function handleFormSubmitCard(evt) {
   evt.preventDefault();
-  cardsList.prepend(createCard({
+  cardsContainer.prepend(createCard({
     name: nameInputCard.value,
     link: urlInputCard.value
   }));
   closePopup(popupCard);
   formElementCard.reset();
+  disableButton(popupCardButtonSubmit, validationConfig);
 }
 
-//Слушатели профиля
-editButton.addEventListener('click', () => {
-  openPopup(popupProfile);
-  nameInputProfile.value = profileName.textContent;
-  jobInputProfile.value = profileJob.textContent;
+initialCards.forEach((card) => {
+  cardsContainer.append(createCard(card));
 });
+
+//Для каждого попап установил слушатель (P.S Надеюсь, Вы имели ввиду так:) )
+popupList.forEach(popup => {
+  popup.addEventListener('click', closePopupClickOverlay);
+});
+
+//Слушатели профиля
+editButton.addEventListener('click', openPopupProfile);
 closeButtonProfile.addEventListener('click', () => {
   closePopup(popupProfile);
 });
