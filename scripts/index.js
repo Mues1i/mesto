@@ -123,7 +123,6 @@ initialCards.forEach((card) => {
   cardsContainer.append(createCard(card));
 });
 
-//Для каждого попап установил слушатель (P.S Надеюсь, Вы имели ввиду так:) )
 popupList.forEach(popup => {
   popup.addEventListener('click', closePopupClickOverlay);
 });
