@@ -1,3 +1,32 @@
+import Card from "./Card.js";
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 const popupList = document.querySelectorAll('.popup');
 
 //Задаём константу для кнопки Profile
@@ -32,16 +61,16 @@ const closeButtonImage = popupImage.querySelector('.popup__close');
 const image = document.querySelector('.popup__image');
 const nameImage = document.querySelector('.popup__caption');
 
-//Создание карточки
+/* //Создание карточки
 const createCard = (cardItem) => {
   const cardLi = cardTemplate.querySelector('.element').cloneNode(true);
-  const cardLikeButton = cardLi.querySelector('.element__like-button');
-  const cardImage = cardLi.querySelector('.element__image');
-  const cardNameImage = cardLi.querySelector('.element__title');
 
-  cardNameImage.textContent = cardItem.name;
+  const cardImage = cardLi.querySelector('.element__image');
   cardImage.alt = cardItem.name;
   cardImage.src = cardItem.link;
+
+  const cardNameImage = cardLi.querySelector('.element__title');
+  cardNameImage.textContent = cardItem.name;
 
   //Удаление карточки
   cardLi.querySelector('.element__trash').addEventListener('click', () => {
@@ -49,6 +78,7 @@ const createCard = (cardItem) => {
   });
 
   //Лайк карточки
+  const cardLikeButton = cardLi.querySelector('.element__like-button');
   cardLikeButton.addEventListener('click', () => {
     cardLikeButton.classList.toggle('element__like-button_active');
   });
@@ -62,7 +92,7 @@ const createCard = (cardItem) => {
   })
 
   return cardLi;
-}
+} */
 
 //Универсальное открытие popup окон
 function openPopup(popup) {
@@ -107,20 +137,26 @@ function handleFormSubmitProfile(evt) {
   disableButton(popupProfileButtonSubmit, validationConfig);
 }
 
+//Рендер. P.S. В данном спринте (7) создал функция рендера.
+function renderCard(cardData) {
+  const card = new Card(cardData, '#element-template')
+  cardsContainer.prepend(card.getView());
+}
+
 //Сохранение карточки
 function handleFormSubmitCard(evt) {
   evt.preventDefault();
-  cardsContainer.prepend(createCard({
+  renderCard({
     name: nameInputCard.value,
     link: urlInputCard.value
-  }));
+  }, '#element__template');
   closePopup(popupCard);
   formElementCard.reset();
   disableButton(popupCardButtonSubmit, validationConfig);
 }
 
-initialCards.forEach((card) => {
-  cardsContainer.append(createCard(card));
+initialCards.forEach((cardData) => {
+  renderCard(cardData);
 });
 
 popupList.forEach(popup => {
@@ -147,3 +183,5 @@ formElementCard.addEventListener('submit', handleFormSubmitCard);
 closeButtonImage.addEventListener('click', () => {
   closePopup(popupImage);
 });
+
+export default openPopup;
