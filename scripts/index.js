@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js"
 
 const initialCards = [
   {
@@ -34,7 +35,7 @@ const editButton = document.querySelector('.profile__edit-button');
 
 //Задаём константы для Popup Profile
 const popupProfile = document.querySelector('.popup_type_profile');
-const popupProfileButtonSubmit = popupProfile.querySelector('.popup__submit');
+//const popupProfileButtonSubmit = popupProfile.querySelector('.popup__submit');
 const closeButtonProfile = popupProfile.querySelector('.popup__close');
 const formElementProfile = popupProfile.querySelector('.popup__form');
 const nameInputProfile = formElementProfile.querySelector('.popup__input_type_name');
@@ -44,7 +45,7 @@ const profileJob = document.querySelector('.profile__job');
 
 //Задаём константы для Popup Card
 const popupCard = document.querySelector('.popup_type_card');
-const popupCardButtonSubmit = popupCard.querySelector('.popup__submit');
+//const popupCardButtonSubmit = popupCard.querySelector('.popup__submit');
 const addButton = document.querySelector('.profile__add-button');
 const closeButtonCard = popupCard.querySelector('.popup__close');
 const formElementCard = popupCard.querySelector('.popup__form');
@@ -53,15 +54,15 @@ const urlInputCard = formElementCard.querySelector('.popup__input_type_url-image
 
 //Задаём константы для Card
 const cardsContainer = document.querySelector('.elements__list');
-const cardTemplate = document.querySelector('#element-template').content;
+//const cardTemplate = document.querySelector('#element-template').content;
 
 //Задаём константы для popup изображения
 const popupImage = document.querySelector('.popup_type_image');
 const closeButtonImage = popupImage.querySelector('.popup__close');
-const image = document.querySelector('.popup__image');
+/* const image = document.querySelector('.popup__image');
 const nameImage = document.querySelector('.popup__caption');
 
-/* //Создание карточки
+//Создание карточки
 const createCard = (cardItem) => {
   const cardLi = cardTemplate.querySelector('.element').cloneNode(true);
 
@@ -134,10 +135,10 @@ function handleFormSubmitProfile(evt) {
   profileName.textContent = nameInputProfile.value;
   profileJob.textContent = jobInputProfile.value;
   closePopup(popupProfile);
-  disableButton(popupProfileButtonSubmit, validationConfig);
+  //disableButton(popupProfileButtonSubmit, validationConfig);
 }
 
-//Рендер. P.S. В данном спринте (7) создал функция рендера.
+//Рендер. P.S. В данном спринте создал функция рендера.
 function renderCard(cardData) {
   const card = new Card(cardData, '#element-template')
   cardsContainer.prepend(card.getView());
@@ -152,7 +153,7 @@ function handleFormSubmitCard(evt) {
   }, '#element__template');
   closePopup(popupCard);
   formElementCard.reset();
-  disableButton(popupCardButtonSubmit, validationConfig);
+  //disableButton(popupCardButtonSubmit, validationConfig);
 }
 
 initialCards.forEach((cardData) => {
@@ -183,5 +184,20 @@ formElementCard.addEventListener('submit', handleFormSubmitCard);
 closeButtonImage.addEventListener('click', () => {
   closePopup(popupImage);
 });
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+};
+
+const validationEditPopup = new FormValidator(validationConfig, popupProfile);
+validationEditPopup.enableValidation();
+
+const validationAddPopup = new FormValidator(validationConfig, popupCard);
+validationAddPopup.enableValidation();
 
 export default openPopup;
