@@ -1,20 +1,21 @@
-import openPopup from "./index.js";
+import openPopup from "./index.js"; //Не очень понял как это реализовать(Мучался разными способами) ).
 
 class Card {
-  constructor ({ name, link }, templateSelector ) {
+  constructor ({ name, link }, templateSelector) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
+    this._popupImage = document.querySelector('.popup_type_image');
+    this._nameImage = this._popupImage.querySelector('.popup__caption');
+    this._image = this._popupImage.querySelector('.popup__image');
   }
 
   _getTemplate() {
-    const cardTemplate = document
+    return document
     .querySelector(this._templateSelector)
     .content
     .querySelector('.element')
     .cloneNode(true);
-
-    return cardTemplate;
   }
 
   _setData() {
@@ -36,17 +37,11 @@ class Card {
   }
 
   _handleOpenImage() {
-    const popupImage = document.querySelector('.popup_type_image'); //P.S. Мне кажется, вместо "document" должен быть "this._newCard", но тогда выходит ошибка.
-    openPopup(popupImage);
-
-    const nameImage = popupImage.querySelector('.popup__caption');
-    nameImage.textContent = this._name;
-
-    const image = popupImage.querySelector('.popup__image');
-    image.src = this._link;
-    image.alt = this._name;
+    openPopup(this._popupImage);
+    this._nameImage.textContent = this._name;
+    this._image.src = this._link;
+    this._image.alt = this._name;
   }
-
   _setListeners() {
     const deleteButton = this._newCard.querySelector('.element__trash');
     deleteButton.addEventListener('click', () => { this._handleDeleteCard() });

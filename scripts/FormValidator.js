@@ -57,8 +57,6 @@ class FormValidator {
   }
 
   _setEventListeners() {
-    //const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    //const button = this._formElement.querySelector(this._submitButtonSelector);
     this._toggleButtonState();
     this._formElement.addEventListener('reset', () => {
       this._disableButton();
@@ -73,11 +71,7 @@ class FormValidator {
   }
 
   enableValidation() {
-    const forms = Array.from(document.querySelectorAll(this._formSelector));
-
-    forms.forEach(() => {
-      this._setEventListeners();
-    });
+    this._setEventListeners();
   }
 }
 
