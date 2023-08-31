@@ -8,8 +8,6 @@ const editButton = document.querySelector('.profile__edit-button');
 
 //Задаём константы для Popup Profile
 const popupProfile = document.querySelector('.popup_type_profile');
-//const popupProfileButtonSubmit = popupProfile.querySelector('.popup__submit');
-const closeButtonProfile = popupProfile.querySelector('.popup__close');
 const formElementProfile = popupProfile.querySelector('.popup__form');
 const nameInputProfile = formElementProfile.querySelector('.popup__input_type_name');
 const jobInputProfile = formElementProfile.querySelector('.popup__input_type_job');
@@ -19,7 +17,7 @@ const profileJob = document.querySelector('.profile__job');
 //Задаём константы для Popup Card
 const popupCard = document.querySelector('.popup_type_card');
 const addButton = document.querySelector('.profile__add-button');
-const closeButtonCard = popupCard.querySelector('.popup__close');
+//const closeButtonCard = popupCard.querySelector('.popup__close');
 const formElementCard = popupCard.querySelector('.popup__form');
 const nameInputCard = formElementCard.querySelector('.popup__input_type_name-image');
 const urlInputCard = formElementCard.querySelector('.popup__input_type_url-image');
@@ -60,10 +58,10 @@ function closePopupKeyEsc(evt) {
   }
 }
 
-//Закрытие popup окон при нажатии на оверлей
+//Закрытие popup окон при нажатии на оверлей и на крестик
 function closePopupClickOverlay(evt) {
-  if (evt.target.classList.contains("popup")) { // Здесь тоже не могу догадаться, как это реализовать =(
-      closePopup(evt.target);
+  if (evt.currentTarget === evt.target || evt.target.classList.contains("popup__close")) {
+      closePopup(evt.currentTarget);
   }
 }
 
@@ -101,24 +99,13 @@ popupList.forEach(popup => {
 
 //Слушатели профиля
 editButton.addEventListener('click', openPopupProfile);
-closeButtonProfile.addEventListener('click', () => {
-  closePopup(popupProfile);
-});
 formElementProfile.addEventListener('submit', handleFormSubmitProfile);
 
 //Слушатели карточек
 addButton.addEventListener('click', () => {
   openPopup(popupCard);
 });
-closeButtonCard.addEventListener('click', () => {
-  closePopup(popupCard);
-});
 formElementCard.addEventListener('submit', handleFormSubmitCard);
-
-//Закрытие popup изображения
-closeButtonImage.addEventListener('click', () => {
-  closePopup(popupImage);
-});
 
 const validationConfig = {
   formSelector: '.popup__form',
