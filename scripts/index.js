@@ -30,6 +30,8 @@ const cardsContainer = document.querySelector('.elements__list');
 //Задаём константы для popup изображения
 const popupImage = document.querySelector('.popup_type_image');
 const closeButtonImage = popupImage.querySelector('.popup__close');
+const nameImage = popupImage.querySelector('.popup__caption');
+const image = popupImage.querySelector('.popup__image');
 
 //Универсальное открытие popup окон
 function openPopup(popup) {
@@ -60,7 +62,7 @@ function closePopupKeyEsc(evt) {
 
 //Закрытие popup окон при нажатии на оверлей
 function closePopupClickOverlay(evt) {
-  if (evt.target.classList.contains("popup")) { // И здесь тоже не могу догадаться, как это реализовать)
+  if (evt.target.classList.contains("popup")) { // Здесь тоже не могу догадаться, как это реализовать =(
       closePopup(evt.target);
   }
 }
@@ -74,7 +76,7 @@ function handleFormSubmitProfile(evt) {
 }
 
 function renderCard(cardData) {
-  const card = new Card(cardData, '#element-template')
+  const card = new Card(cardData, '#element-template', openPopup, popupImage, nameImage, image)
   cardsContainer.prepend(card.getView());
 }
 
@@ -132,5 +134,3 @@ validationEditPopup.enableValidation();
 
 const validationAddPopup = new FormValidator(validationConfig, popupCard);
 validationAddPopup.enableValidation();
-
-export default openPopup;

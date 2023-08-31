@@ -1,30 +1,12 @@
-import openPopup from "./index.js"; //Не очень понял как это реализовать(Мучался разными способами). Один из примеров написал ниже(При таком коде пишет, что 14 строчка не является функцией):
-/* class Card {
-  constructor ({ name, link }, templateSelector, openPopup) {
-    this._name = name;
-    this._link = link;
-    this._templateSelector = templateSelector;
-    this._popupImage = document.querySelector('.popup_type_image');
-    this._nameImage = this._popupImage.querySelector('.popup__caption');
-    this._image = this._popupImage.querySelector('.popup__image');
-    this._openPopup = openPopup;
-  }
-
-  _handleOpenImage() {
-    this._openPopup(this._popupImage);
-    this._nameImage.textContent = this._name;
-    this._image.src = this._link;
-    this._image.alt = this._name;
-  } */
-
 class Card {
-  constructor ({ name, link }, templateSelector) {
+  constructor ({ name, link }, templateSelector, openPopup, popupImage, nameImage, image) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
-    this._popupImage = document.querySelector('.popup_type_image');
-    this._nameImage = this._popupImage.querySelector('.popup__caption');
-    this._image = this._popupImage.querySelector('.popup__image');
+    this._popupImage = popupImage;
+    this._nameImage = nameImage;
+    this._image = image;
+    this._openPopup = openPopup;
   }
 
   _getTemplate() {
@@ -54,7 +36,7 @@ class Card {
   }
 
   _handleOpenImage() {
-    openPopup(this._popupImage);
+    this._openPopup(this._popupImage);
     this._nameImage.textContent = this._name;
     this._image.src = this._link;
     this._image.alt = this._name;
