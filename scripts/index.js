@@ -1,5 +1,6 @@
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js"
+import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 
 const popupList = document.querySelectorAll('.popup');
 
@@ -75,7 +76,7 @@ function handleFormSubmitProfile(evt) {
 
 function renderCard(cardData) {
   const card = new Card(cardData, '#element-template', openPopup, popupImage, nameImage, image)
-  cardsContainer.prepend(card.getView());
+  return card.getView();
 }
 
 //Сохранение карточки
@@ -89,9 +90,9 @@ function handleFormSubmitCard(evt) {
   formElementCard.reset();
 }
 
-initialCards.forEach((cardData) => {
+/* initialCards.forEach((cardData) => {
   renderCard(cardData);
-});
+}); */
 
 popupList.forEach(popup => {
   popup.addEventListener('click', closePopupClickOverlay);
@@ -121,3 +122,14 @@ validationEditPopup.enableValidation();
 
 const validationAddPopup = new FormValidator(validationConfig, popupCard);
 validationAddPopup.enableValidation();
+
+const section = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const element = renderCard(item);
+    section.addItem(element);
+    }
+  },
+  '.elements__list');
+
+section.renderItems();
